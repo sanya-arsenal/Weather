@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="item_today">Today</string>
+    <string name="item_forecast">Forecast</string>
+    <string name="city">City, date</string>
+    <string name="degrees">22</string>
+    <string name="todo">TODO</string>
+    <string name="weather_description">Weather_description</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind_speed">Wind_speed</string>
+    <string name="wind_direction">Wind</string>
+    <string name="share">   Share</string>
+    <string name="weather_in_city">Weather_in_city</string>
+    <string name="day">Day</string>
+    <string name="time">Time</string>
+    <string name="weather">Weather</string>
+    <string name="_25">25</string>
 </resources>
