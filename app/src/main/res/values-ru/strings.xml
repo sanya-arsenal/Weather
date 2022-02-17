@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="temperature_info_C">%1$d°C</string>
+    <string name="temperature_info_F">%1$d°F</string>
+    <string name="temperature_feels_like">Ощущается как %1$s</string>
+    <string name="temperature_C">°C</string>
+    <string name="temperature_F">°F</string>
+    <string name="feels_like_info_C">Ощущается как %1$d</string>
+    <string name="feels_like_info_F">Ощущается как %1$d</string>
+
+    <string name="humidity_info">Влажность: %1$d%%</string>
+
+    <string name="pressure_info_hPa">Давление: %1$d гПа</string>
+    <string name="pressure_info_mmHg">Давление: %1$d мм. рт. ст.</string>
+    <string name="pressure_mmHg">мм. рт. ст.</string>
+    <string name="pressure_hPa">гПа</string>
+
+    <string name="wind_info_ms">Скорость ветра: %1$d м/с</string>
+    <string name="wind_info_kmh">Скорость ветра: %1$d км/ч</string>
+    <string name="wind_kmh">км/ч</string>
+    <string name="wind_ms">м/с</string>
+
+    <string name="windDirection_Type_SV">Направление ветра: Северо-восточное</string>
+    <string name="windDirection_Type_YUV">Направление ветра: Юго-восточное</string>
+    <string name="windDirection_Type_YUZ">Направление ветра: Юго-западное</string>
+    <string name="windDirection_Type_SZ">Направление ветра: Северо-западное</string>
+
+    <string name="app_name">Погода</string>
+
+    <string name="city_name_country">%1$s, %2$s</string>
+    <string name="details">Подробный прогноз>></string>
+    <string name="today">Сегодня</string>
+
+    <string name="explanation">Чтобы получить данные о погоде,
+        предоставьте устройству доступ к местоположению.</string>
+    <string name="permission_denied">Эта функция недоступна без разрешений на местоположение.
+        Открыть настройки приложения?</string>
+    <string name="location_provider_disable">Геолокация отключена. Открыть настройки устройства?</string>
+    <string name="location_manager_not_available">Диспетчер местоположений недоступен</string>
+    <string name="error_getting_location">Ошибка получения локации</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="settings">Настройки</string>
+    <string name="temperature">Температура</string>
+    <string name="pressure">Давление</string>
+    <string name="windSpeed">Скорость ветра</string>
+    <string name="apply">Применить</string>
+    <string name="favorites">Избранное</string>
+    <string name="currentLocation">Текущее местоположение</string>
+    <string name="favoritesLocations">Избранные локации</string>
+
+    <string name="results_internet_connection_error_text">Проверьте подключение к интернету</string>
+    <string name="results_parsing_error_text">Ошибка синтаксического анализа JSON</string>
+    <string name="results_unexpected_error_text">Произошла ошибка</string>
+
+    <string name="loading_error">Ошибка загрузки данных</string>
+
+    <string-array name="temperature">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+
+    <string-array name="pressure">
+        <item>мм. рт. ст.</item>
+        <item>гПа</item>
+    </string-array>
+
+    <string-array name="windSpeed">
+        <item>км/ч</item>
+        <item>м/с</item>
+    </string-array>
+
+</resources>
