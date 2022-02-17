@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Alexandr/.gradle/caches/transforms-2/files-2.1/148cb7ef4691e3ba5820e9c0acc6b3d6/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.15942028985507245" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable-mdpi/corner1.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/backspace.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/base_favorites.xml" value="1.290625" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/clear.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/corner.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/corners.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/crosshairs_gps.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/favorites.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/geolocation.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/humidity.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_arrow_down.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_arrow_drop_up.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/location.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/magnify.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/map_marker.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/mylocation.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/pressure.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/searchlocation.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/settings.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/share.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/wind_direction.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/drawable/wind_speed.xml" value="0.2203125" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_main.xml" value="0.16168478260869565" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/attretreterte.xml" value="0.19882246376811594" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/expandable_child_item.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/expandable_parent_item.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_favorites.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_favorites11.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_description.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_forecast.xml" value="0.33" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_test.xml" value="0.22" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_today.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_current_location.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_current_location_name.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_drop_dawn.xml" value="0.1" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_favorites.xml" value="0.16" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_favorites_locations.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_favorites_name.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_forecast.xml" value="0.33" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_spinner.xml" value="0.1" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/item_spinner2.xml" value="0.2" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/view_holder_day.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/view_holder_time.xml" value="0.33" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
