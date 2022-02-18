@@ -36,7 +36,7 @@
         Open app settings?</string>
     <string name="location_provider_disable">Location provider disable. Open device settings?</string>
     <string name="location_manager_not_available">Location manager not available</string>
-    <string name="error_getting_location">Error_getting_location</string>
+    <string name="error_getting_location">Error getting location</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 

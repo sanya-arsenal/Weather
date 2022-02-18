@@ -88,7 +88,6 @@ class FavoritesAdapter(
                         deleteClick(list[position-3].id)
                     }
                 }
-
             }
         }
     }
@@ -111,4 +110,3 @@ class FavoritesAdapter(
     }
 
 }
-

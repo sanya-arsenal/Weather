@@ -1,6 +1,5 @@
 package com.example.weather.network
 
-import android.annotation.SuppressLint
 import android.content.Context
 import com.example.weather.data.ExpandableDateModel
 import com.example.weather.data.LocationsFavoritesTable
@@ -27,10 +26,10 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
 
     @ExperimentalSerializationApi
     suspend fun loadCurrentAndForecastDataByCityId(id: Int, lang: String):List<WeatherDescription>{
-        val listWeather1 = mutableListOf<WeatherDescription>()
-        listWeather1.add(loadCurrentWeatherByCityId(id, lang))
-        listWeather1.addAll(load5dayForecastByCityId(id, lang))
-        return listWeather1
+        val listWeather = mutableListOf<WeatherDescription>()
+        listWeather.add(loadCurrentWeatherByCityId(id, lang))
+        listWeather.addAll(load5dayForecastByCityId(id, lang))
+        return listWeather
     }
 
     @ExperimentalSerializationApi
@@ -218,9 +217,8 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun convertUnixTime(unix: String): String{
-        val dateFormat = SimpleDateFormat("E d MMMM, yyyy")
+        val dateFormat = SimpleDateFormat("E d MMMM, yyyy", Locale.getDefault())
         val date = Date(unix.toLong()*1000)
         return dateFormat.format(date)
     }
