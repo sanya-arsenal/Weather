@@ -35,6 +35,9 @@
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_favorites11.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_description.xml" value="0.25" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_description1.xml" value="0.15081521739130435" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_description11111.xml" value="0.1716485507246377" />
+        <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_description111111.xml" value="0.22" />
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_forecast.xml" value="0.33" />
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_test.xml" value="0.22" />
         <entry key="..\:/Users/Alexandr/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_today.xml" value="0.25" />
@@ -59,12 +62,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
   </component>
 </project>

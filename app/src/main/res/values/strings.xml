@@ -27,9 +27,8 @@
     <string name="app_name">Weather</string>
 
     <string name="city_name_country">%1$s, %2$s</string>
-    <string name="details">Details>></string>
+    <string name="details">Detailed forecast>></string>
     <string name="today">Today</string>
-
 
     <string name="explanation">To get weather data, please grant access device to location</string>
     <string name="permission_denied">This feature is not available without location permissions.

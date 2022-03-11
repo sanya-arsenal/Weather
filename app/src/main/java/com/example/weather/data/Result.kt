@@ -12,7 +12,7 @@ data class ResultForecastData (
 )
 
 @Serializable
-data class ResultWeather (
+data class ResultWeatherData (
         @SerialName("weather")
         val weather: List<Weather>,
         @SerialName("main")
