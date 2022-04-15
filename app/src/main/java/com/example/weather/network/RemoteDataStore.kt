@@ -45,7 +45,7 @@ class RemoteDataStore {
     val weatherAPI: WeatherAPI = retrofit1.create(WeatherAPI::class.java)
 
     @ExperimentalSerializationApi
-    suspend fun getCurrentWeatherByLatLong(lat:String, lon:String, lang: String): ResultWeather {
+    suspend fun getCurrentWeatherByLatLong(lat:String, lon:String, lang: String): ResultWeatherData {
         return weatherAPI.getCurrentWeatherByLatLong(lat,lon,lang)
     }
 
@@ -55,7 +55,7 @@ class RemoteDataStore {
     }
 
     @ExperimentalSerializationApi
-    suspend fun getCurrentWeatherByCityId(id: Int, lang: String): ResultWeather{
+    suspend fun getCurrentWeatherByCityId(id: Int, lang: String): ResultWeatherData{
         return weatherAPI.getCurrentWeatherByCityId(id, lang)
     }
 

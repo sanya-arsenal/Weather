@@ -1,6 +1,7 @@
 package com.example.weather.view
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -35,12 +37,26 @@ class FragmentWeatherDescription: Fragment() {
     }
 
     private var requestPermission =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()){ isGranted:Boolean->
+        registerForActivityResult(ActivityResultContracts.RequestPermission()){ isGranted: Boolean->
             if (isGranted) {
                 onLocationPermissionGranted()
             }
             else{
                 onLocationPermissionNotGranted()
+            }
+        }
+
+    private var requestSettingLocation =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_CANCELED){
+                viewModel.loadingDataWeathers()
+            }
+        }
+
+    private var requestSettingApplication =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_CANCELED ){
+                onLocationPermissionGranted()
             }
         }
 
@@ -75,6 +91,7 @@ class FragmentWeatherDescription: Fragment() {
                 viewModel.setSelectedUnitOfWindSpeed(
                     bundle.getParcelable(FragmentSettings.RESULT_WIND_SPEED_KEY)?: WindSpeedModel.Ms
                 )
+                savePreferencesData()
                 showWeather(listDataOfWeather)
             }
 
@@ -89,7 +106,7 @@ class FragmentWeatherDescription: Fragment() {
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED ){
-                    viewModel.loadDataByCity(viewModel.getCurrentLocationId())
+                    viewModel.loadingDataWeathers()
                     swSwipeRefreshLayout.isRefreshing = false
                 }else{
                     onGetPermissionLocation()
@@ -238,12 +255,11 @@ class FragmentWeatherDescription: Fragment() {
             AlertDialog.Builder(it)
                 .setMessage(R.string.permission_denied)
                 .setPositiveButton(R.string.ok) { dialog, _ ->
-                    startActivity(
+                    requestSettingApplication.launch(
                         Intent(
                             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                            Uri.parse("package:" + it.packageName)
+                            Uri.parse("package:" + it.packageName))
                         )
-                    )
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.cancel) { dialog, _ ->
@@ -259,7 +275,7 @@ class FragmentWeatherDescription: Fragment() {
             AlertDialog.Builder(it)
                 .setMessage(R.string.location_provider_disable)
                 .setPositiveButton(R.string.ok) { dialog, _ ->
-                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    requestSettingLocation.launch(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.cancel) { dialog, _ ->
@@ -271,10 +287,7 @@ class FragmentWeatherDescription: Fragment() {
     }
 
     private fun restorePreferencesData(){
-        isRationaleShown = activity?.getPreferences(MODE_PRIVATE)?.getBoolean(RATIONALE_KEY, false)?:false
-        viewModel.setCurrentLocationId(
-            activity?.getPreferences(MODE_PRIVATE)?.getInt(LOCATION_ID, MINSK )!!
-        )
+        isRationaleShown = activity?.getPreferences(MODE_PRIVATE)?.getBoolean(RATIONALE_KEY, false) ?: false
         viewModel.setSelectedUnitOfTemperature(
             convertStringToUnitsModel(
                 activity?.getPreferences(MODE_PRIVATE)?.getString(
@@ -292,6 +305,10 @@ class FragmentWeatherDescription: Fragment() {
                 activity?.getPreferences(MODE_PRIVATE)?.getString(
                     WIND_SPEED_KEY, WindSpeedModel.Ms.toString()) ?: WindSpeedModel.Ms.toString()
             ) as WindSpeedModel
+        )
+        viewModel.setCurrentLocationId(
+            activity?.getPreferences(MODE_PRIVATE)?.getInt(LOCATION_ID, MINSK )
+                ?: MINSK
         )
     }
 
@@ -337,7 +354,8 @@ class FragmentWeatherDescription: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        savePreferencesData()
+        requestSettingApplication.unregister()
+        requestSettingLocation.unregister()
         requestPermission.unregister()
         _binding = null
     }
@@ -348,8 +366,7 @@ class FragmentWeatherDescription: Fragment() {
         private const val TEMPERATURE_KEY = "TEMPERATURE_KEY"
         private const val PRESSURE_KEY = "PRESSURE_KEY"
         private const val WIND_SPEED_KEY = "WIND_SPEED_KEY"
-        private const val MINSK = 625144
-
+        const val MINSK = 625144
     }
 
 }

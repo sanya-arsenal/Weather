@@ -17,8 +17,6 @@ import com.example.weather.data.WindSpeedModel
 import com.example.weather.databinding.ItemHolderDayBinding
 import com.example.weather.databinding.ItemHolderTimeBinding
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -57,7 +55,7 @@ class ForecastDetailsAdapter(
         when(holder){
             is WeatherForecastParentViewHolder -> {
                 with(holder.binding){
-                    tvDay.text = holder.itemView.context.convertStringToDate(row.date)
+                    tvDay.text = holder.itemView.context.convertStringToDate(row.date.toString())
                     if (forecastDataList[position].isExpanded){
                         ivArrowDown.visibility = View.GONE
                         ivArrowDropUp.visibility = View.VISIBLE
@@ -155,16 +153,15 @@ class ForecastDetailsAdapter(
     class WeatherForecastParentViewHolder(val binding: ItemHolderDayBinding) : RecyclerView.ViewHolder(binding.root)
     class WeatherForecastChildViewHolder(val binding: ItemHolderTimeBinding) : RecyclerView.ViewHolder(binding.root)
 
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun Context.convertStringToDate(date: String?): String{
+
+    private fun Context.convertStringToDate(date: String): String{
         val calendar = Calendar.getInstance().time
-        val calendarDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val calendarDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val calendarDate = calendarDateFormat.format(calendar)
         return if (date != calendarDate ){
-            val firstFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val secondFormat = DateTimeFormatter.ofPattern("E, d MMMM")
-            secondFormat.format(LocalDate.parse(date, firstFormat))
+            val firstFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val secondFormat = SimpleDateFormat("E, d MMMM", Locale.getDefault())
+            secondFormat.format(firstFormat.parse(date)!!)
         }else{
             getString(R.string.today)
         }

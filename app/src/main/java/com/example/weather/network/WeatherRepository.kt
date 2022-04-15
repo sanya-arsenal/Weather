@@ -1,6 +1,5 @@
 package com.example.weather.network
 
-import android.annotation.SuppressLint
 import android.content.Context
 import com.example.weather.data.ExpandableDateModel
 import com.example.weather.data.LocationsFavoritesTable
@@ -14,7 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-class WeatherRepository(private val dataStore: RemoteDataStore, context: Context) {
+class WeatherRepository(private val dataStore: RemoteDataStore, val context: Context) {
     private val instanceDB = WeatherDatabase.create(context)
 
     @ExperimentalSerializationApi
@@ -27,10 +26,10 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
 
     @ExperimentalSerializationApi
     suspend fun loadCurrentAndForecastDataByCityId(id: Int, lang: String):List<WeatherDescription>{
-        val listWeather1 = mutableListOf<WeatherDescription>()
-        listWeather1.add(loadCurrentWeatherByCityId(id, lang))
-        listWeather1.addAll(load5dayForecastByCityId(id, lang))
-        return listWeather1
+        val listWeather = mutableListOf<WeatherDescription>()
+        listWeather.add(loadCurrentWeatherByCityId(id, lang))
+        listWeather.addAll(load5dayForecastByCityId(id, lang))
+        return listWeather
     }
 
     @ExperimentalSerializationApi
@@ -41,9 +40,10 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
                 feels_like = weather.main.feels_like.roundToInt(),
                 pressure = weather.main.pressure,
                 humidity = weather.main.humidity,
-                description = weather.weather.map { qwe2 -> qwe2.description }.toString()
+                description = weather.weather.map { image -> image.description }.toString()
                     .drop(1).dropLast(1),
-                icon = weather.weather.map { qwe1 -> "https://openweathermap.org/img/wn/${qwe1.icon}@2x.png" }[0],
+                icon = weather.weather.map { image -> WeatherAPI.BASE_IMAGE_URL + image.icon +
+                    WeatherAPI.BASE_IMAGE_URL_END}[0],
                 speed = weather.wind.speed.roundToInt(),
                 deg = weather.wind.deg,
                 name = weather.name,
@@ -63,9 +63,10 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
                 feels_like = weather.main.feels_like.roundToInt(),
                 pressure = weather.main.pressure,
                 humidity = weather.main.humidity,
-                description = weather.weather.map { qwe2 -> qwe2.description }.toString()
+                description = weather.weather.map { image -> image.description }.toString()
                     .drop(1).dropLast(1),
-                icon = weather.weather.map { qwe1 -> "https://openweathermap.org/img/wn/${qwe1.icon}@2x.png" }[0],
+                icon = weather.weather.map { image -> WeatherAPI.BASE_IMAGE_URL + image.icon +
+                    WeatherAPI.BASE_IMAGE_URL_END }[0],
                 speed = weather.wind.speed.roundToInt(),
                 deg = weather.wind.deg,
                 name = weather.name,
@@ -87,8 +88,9 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
                 feels_like = forecast.main.feels_like.roundToInt(),
                 pressure = forecast.main.pressure,
                 humidity = forecast.main.humidity,
-                description = forecast.weather.map { qw1->qw1.description }.toString().drop(1).dropLast(1),
-                icon = forecast.weather.map { qwe1->"https://openweathermap.org/img/wn/${qwe1.icon}@2x.png" }[0],
+                description = forecast.weather.map { image-> image.description }.toString().drop(1).dropLast(1),
+                icon = forecast.weather.map { image-> WeatherAPI.BASE_IMAGE_URL + image.icon +
+                    WeatherAPI.BASE_IMAGE_URL_END }[0],
                 speed = forecast.wind.speed.roundToInt(),
                 deg = forecast.wind.deg,
                 name = city.name,
@@ -110,8 +112,9 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
                 feels_like = forecast.main.feels_like.roundToInt(),
                 pressure = forecast.main.pressure,
                 humidity = forecast.main.humidity,
-                description = forecast.weather.map { qw1->qw1.description }.toString().drop(1).dropLast(1),
-                icon = forecast.weather.map { qwe1->"https://openweathermap.org/img/wn/${qwe1.icon}@2x.png" }[0],
+                description = forecast.weather.map { image -> image.description }.toString().drop(1).dropLast(1),
+                icon = forecast.weather.map { image -> WeatherAPI.BASE_IMAGE_URL + image.icon +
+                    WeatherAPI.BASE_IMAGE_URL_END }[0],
                 speed = forecast.wind.speed.roundToInt(),
                 deg = forecast.wind.deg,
                 name = city.name,
@@ -133,19 +136,21 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
     suspend fun getWeatherDataFromDB(id: Int, date: String, time: String): List<WeatherDescription>{
         return withContext(Dispatchers.IO){
             val listWeather = mutableListOf<WeatherDescription>()
-            listWeather.addAll(convertWeatherToWeatherUi(instanceDB.weatherDao.getWeatherFromDB(id, date, time)))
-            listWeather.addAll(convertWeatherToWeatherUi(instanceDB.weatherDao.getWeatherForecastFromDB(id,date)))
+            listWeather.addAll(convertWeatherToWeatherScreen(
+                instanceDB.weatherDao.getWeatherFromDB(id, date, time))
+            )
+            listWeather.addAll(convertWeatherToWeatherScreen(instanceDB.weatherDao.getWeatherForecastFromDB(id,date)))
             return@withContext listWeather
         }
     }
 
     suspend fun get5DayForecastFromDB(cityId: Int): List<ExpandableDateModel> {
         return withContext(Dispatchers.IO){
-            convertWeatherForecastForWeatherScreen(instanceDB.weatherDao.getWeather5dayForecast(cityId))
+            convertWeatherForecastToWeatherScreen(instanceDB.weatherDao.getWeather5dayForecast(cityId))
         }
     }
 
-    private fun convertWeatherToWeatherUi(list: List<WeatherForecastTable>): List<WeatherDescription>{
+    private fun convertWeatherToWeatherScreen(list: List<WeatherForecastTable>): List<WeatherDescription>{
         return list.map { weather ->
             WeatherDescription(
                 weather.temp,
@@ -185,7 +190,7 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
         }
     }
 
-    private fun convertWeatherForecastForWeatherScreen(list: List<WeatherForecastTable>):List<ExpandableDateModel>{
+    private fun convertWeatherForecastToWeatherScreen(list: List<WeatherForecastTable>):List<ExpandableDateModel>{
         val listForecast = mutableListOf<ExpandableDateModel>()
         var date: String? = "12.12.12"
         for(n in list){
@@ -218,9 +223,8 @@ class WeatherRepository(private val dataStore: RemoteDataStore, context: Context
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun convertUnixTime(unix: String): String{
-        val dateFormat = SimpleDateFormat("E d MMMM, yyyy")
+        val dateFormat = SimpleDateFormat("E d MMMM, yyyy", Locale.getDefault())
         val date = Date(unix.toLong()*1000)
         return dateFormat.format(date)
     }

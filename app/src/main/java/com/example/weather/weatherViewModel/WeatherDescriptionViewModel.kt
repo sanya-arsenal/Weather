@@ -1,6 +1,5 @@
 package com.example.weather.weatherViewModel
 
-import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.*
@@ -13,6 +12,7 @@ import com.example.weather.data.FusedLocationProvider
 import com.example.weather.data.GetUserLocationResult
 import com.example.weather.data.WeatherDescription
 import com.example.weather.network.WeatherRepository
+import com.example.weather.view.FragmentWeatherDescription
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -33,7 +33,7 @@ class WeatherDescriptionViewModel(
     private var currentTemperature = TemperatureModel.Celsius
     private var currentPressure = PressureModel.MmHg
     private var currentWindSpeed = WindSpeedModel.Ms
-    private var currentLocationId = MINSK
+    private var currentLocationId = FragmentWeatherDescription.MINSK
 
     private val _dataWeatherState = MutableLiveData<ViewModelDataState>()
     val dataWeatherState: LiveData<ViewModelDataState> get() = _dataWeatherState
@@ -130,17 +130,15 @@ class WeatherDescriptionViewModel(
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun getCurrentDate(): String{
         val date = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return dateFormat.format(date)
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun getCurrentTime(): String{
         val date = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("HH:mm")
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         return dateFormat.format(date)
     }
 
@@ -154,10 +152,6 @@ class WeatherDescriptionViewModel(
         object Loading: ViewModelLocationState()
         object LocationProviderDisabled: ViewModelLocationState()
         data class Error(val errorId: Int): ViewModelLocationState()
-    }
-
-    companion object{
-        const val MINSK = 625144
     }
 
 }
